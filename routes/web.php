@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\NoticiaController;
 use App\Models\Contacto;
 
 use Illuminate\Http\Request;
@@ -21,7 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacto', [ContactoController::class, 'formulario']);
+Route::get('/contacto/{tipo_persona?}', [ContactoController::class, 'formulario']);
 
 Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
 
+Route::get('lista', [ContactoController::class, 'lista']);
+
+Route::resource('noticias', NoticiaController::class);

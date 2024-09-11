@@ -60,6 +60,7 @@
 <body>
 
     <div class="container">
+        <h1>Formulario de Contacto Para {{ $tipo_persona}}</h1>
         <h1>Contacto</h1>
 
         @if ($errors->any())
@@ -74,6 +75,16 @@
 
         <form action="/contacto-recibe" method="POST">
             @csrf
+
+            @if ($tipo_persona == 'cliente')
+                <div class="form-group">
+                    <label for="no_cliente">Número de Cliente:</label>
+                    <input type="text" id="no_cliente" name="no_cliente" value="{{ old('no_cliente') }}" required><br>
+                </div>
+                @error('no_cliente')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            @endif
 
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -106,7 +117,7 @@
             @error('mensaje')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            
+
             <div class="form-group">
                 <input type="submit" value="Enviar">
             </div>
