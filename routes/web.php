@@ -28,4 +28,6 @@ Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
 
 Route::get('lista', [ContactoController::class, 'lista']);
 
-Route::resource('noticias', NoticiaController::class);
+Route::resource('noticias', NoticiaController::class)->parameters(([
+    'noticia' => 'noticia'
+]));

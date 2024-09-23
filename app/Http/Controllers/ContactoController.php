@@ -16,7 +16,7 @@ class ContactoController extends Controller
     //dd($request->all(), $request->name);
 
     $request->validate([
-        'nombre' => 'required|min:3|max:255',
+        'nombre' => 'required|min:3|max:255',                                                      
         'correo' => 'required|email',
         'asunto' => ['required', 'min:3'],
         'mensaje' => ['required', 'min:10']

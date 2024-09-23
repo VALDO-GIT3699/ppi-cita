@@ -12,7 +12,9 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        //
+        $noticias = Noticia::all();
+
+        return view('noticias.index-noticias', compact('noticias'));
     }
 
     /**
@@ -20,7 +22,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        //
+        return view ('noticias.create-noticias');
     }
 
     /**
@@ -28,7 +30,16 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|min:3|max:255',
+            'fecha' => 'required|email',
+            'categoria' => ['required', 'min:3'],
+            'noticia' => ['required', 'min:10']
+        ]);
+
+        Noticia::create($request->all());
+
+        return redirect()->route('noticia.index');
     }
 
     /**
@@ -36,7 +47,7 @@ class NoticiaController extends Controller
      */
     public function show(Noticia $noticia)
     {
-        //
+        return view('noticias.show-noticia', compact('noticias'));
     }
 
     /**
@@ -44,7 +55,7 @@ class NoticiaController extends Controller
      */
     public function edit(Noticia $noticia)
     {
-        //
+        return view('noticias.edit-noticia', compact('noticias')); //compact('noticia'));
     }
 
     /**
@@ -52,7 +63,16 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, Noticia $noticia)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|min:3|max:255',
+            'fecha' => 'required|email',
+            'categoria' => ['required', 'min:3'],
+            'noticia' => ['required', 'min:10']
+        ]);
+
+        $noticia->update($request->all());
+
+        return redirect()->route('noticia.show', $noticia);
     }
 
     /**
@@ -60,6 +80,8 @@ class NoticiaController extends Controller
      */
     public function destroy(Noticia $noticia)
     {
-        //
+        $noticia->delete();
+
+        return redirect()->route('noticia.index');
     }
 }
