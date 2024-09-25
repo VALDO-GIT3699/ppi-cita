@@ -22,7 +22,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view ('noticias.create-noticias');
+        return view ('noticias.create-noticia');
     }
 
     /**
@@ -30,16 +30,16 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'titulo' => 'required|min:3|max:255',
-            'fecha' => 'required|email',
-            'categoria' => ['required', 'min:3'],
-            'noticia' => ['required', 'min:10']
-        ]);
+        // $request->validate([
+        //     'titulo' => 'required|min:3|max:255',
+        //     'fecha' => 'required',
+        //     'categoria' => ['required', 'min:3'],
+        //     'noticia' => ['required', 'min:10']
+        // ]);
 
         Noticia::create($request->all());
 
-        return redirect()->route('noticia.index');
+        return redirect()->route('noticias.index-noticias');
     }
 
     /**
@@ -47,7 +47,7 @@ class NoticiaController extends Controller
      */
     public function show(Noticia $noticia)
     {
-        return view('noticias.show-noticia', compact('noticias'));
+        return view('noticias.show-noticia', compact('noticia'));
     }
 
     /**
@@ -55,7 +55,7 @@ class NoticiaController extends Controller
      */
     public function edit(Noticia $noticia)
     {
-        return view('noticias.edit-noticia', compact('noticias')); //compact('noticia'));
+        return view('noticias.edit-noticia', compact('noticia')); //compact('noticia'));
     }
 
     /**
@@ -63,12 +63,12 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, Noticia $noticia)
     {
-        $request->validate([
-            'titulo' => 'required|min:3|max:255',
-            'fecha' => 'required|email',
-            'categoria' => ['required', 'min:3'],
-            'noticia' => ['required', 'min:10']
-        ]);
+        // $request->validate([
+        //     'titulo' => 'required|min:3|max:255',
+        //     'fecha' => 'required|date',
+        //     'categoria' => ['required', 'min:3'],
+        //     'noticia' => ['required', 'min:10']
+        // ]);
 
         $noticia->update($request->all());
 

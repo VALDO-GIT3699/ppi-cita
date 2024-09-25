@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lista de mensajes</title>
 </head>
 
@@ -24,15 +25,41 @@
             <td>{{ $mensaje ->mensaje }}</td>
         </tr>
         @endforeach
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+    </table>
 
-
-
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Asunto</th>
+                <th>Numero</th>
+                <th>Creación</th>
+                <th>Edición</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($citas as $cita)
+            <tr>
+                <td>{{ $cita->id }}</td>
+                <td>
+                    <a href="{{ route('cita.show', $cita) }}">
+                        {{ $cita->nombre }}
+                    </a>
+                </td>
+                <td>{{ $cita->fecha }}</td>
+                <td>{{ $cita->asunto }}</td>
+                <td>{{ $cita->numero }}</td>
+                <td>{{ $cita->created_at }}</td>
+                <td>{{ $cita->updated_at }}</td>
+                <td>
+                    <a href="{{ route('cita.edit', $cita) }}">Editar</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 
 

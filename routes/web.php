@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\NoticiaController;
 use App\Models\Contacto;
@@ -28,6 +29,10 @@ Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
 
 Route::get('lista', [ContactoController::class, 'lista']);
 
-Route::resource('noticias', NoticiaController::class)->parameters(([
+Route::resource('noticia', NoticiaController::class)->parameters(([
     'noticia' => 'noticia'
+]));
+
+Route::resource('cita', CitaController::class)->parameters(([
+    'cita' => 'cita'
 ]));

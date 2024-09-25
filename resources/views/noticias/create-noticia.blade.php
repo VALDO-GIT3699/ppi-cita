@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticia</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crear Noticias</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +38,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -58,44 +60,41 @@
 </head>
 
 <body>
-
     <div class="container">
-        <h1>NOTICIA</h1>
+        <h1>Crear Noticia</h1>
 
-
-        <form action="{{ route('noticia.store)}}" method="POST">
+        <form action="{{ route('noticia.store') }}" method="POST">
             @csrf
 
-           
             <div class="form-group">
-                <label for="titulo">Titulo:</label>
-                <input type="text" id="titulo" name="titulo" value="{{ old('titulo') }}" required><br>
+                <label for="titulo">Título:</label>
+                <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}">
             </div>
-           
 
             <div class="form-group">
                 <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" value="{{ old('fecha') }}" required>
+                <input type="date" name="fecha" id="fecha" value="{{ old('fecha') }}">
             </div>
-            
-            <div class="form-group">
-                <label for="categoria">Categoria:</label>
-                <input type="" id="categoria" name="categoria" value="{{ old('categoria') }}" required>
-            </div>
-            
 
             <div class="form-group">
                 <label for="noticia">Noticia:</label>
-                <textarea id="noticia" name="noticia" rows="4" required> "{{ old('noticia') }}"</textarea>
+                <textarea name="noticia" id="noticia" cols="30" rows="4">{{ old('noticia') }}</textarea>
             </div>
-            
+
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <select name="categoria" id="categoria">
+                    <option value="Deportes">Deportes</option>
+                    <option value="Nacional">Nacional</option>
+                    <option value="Internacional">Internacional</option>
+                </select>
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Enviar">
             </div>
         </form>
     </div>
-
 </body>
 
 </html>

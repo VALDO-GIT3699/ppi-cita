@@ -11,7 +11,7 @@ class ContactoController extends Controller
     return view('formulario-contacto', ['tipo_persona' => $tipo_persona]);
     }
 
-    function newContact(Request $request) {
+    public function newContact(Request $request) {
     //return view('procesar_formulario');
     //dd($request->all(), $request->name);
 
@@ -29,7 +29,7 @@ class ContactoController extends Controller
     $contacto->mensaje = $request->mensaje;
     $contacto->save();
 
-    return redirect('/contacto');
+    return redirect('/contacto'); //lista
     }
 
     public function lista()
